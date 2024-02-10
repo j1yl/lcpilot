@@ -1,3 +1,7 @@
+'use client'
+
+import CodeEditor from "../../components/CodeEditor";
+
 export default async function Page() {
   return (
     <>
@@ -7,7 +11,13 @@ export default async function Page() {
           <div>2</div>
         </div>
       </div>
-      <div className="w-full border border-yellow-500">3</div>
+      <div className="w-full border border-yellow-500">3
+      <CodeEditor
+        value=""
+        onChange={() => {}}
+        language="typescript"
+      />
+      </div>
     </>
   );
 }
