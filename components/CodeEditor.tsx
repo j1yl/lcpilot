@@ -1,46 +1,29 @@
-"use client"
+import React from 'react';
+import Editor, { type Monaco } from '@monaco-editor/react';
+import { type editor } from 'monaco-editor';
+import clsx from 'clsx';
 
-//import Link from 'next/link'
-import React, {useRef, useEffect} from 'react';
-import ToolBar from './ToolBar'
-import * as monaco from 'monaco-editor';
+type SupportedLanguages = 'typescript' | 'python' | 'cpp';
 
 type Props = {
-  value: string;
-  onChange: (value: string) => void;
-  language: string;
-}
+  language?: SupportedLanguages;
+  value?: string | undefined;
+  className?: string;
+  onChange?: (value: string | undefined, event: editor.IModelContentChangedEvent) => void;
+};
 
-const CodeEditor: React.FC<Props> = (props: Props) => {
-
-  const editorRef = React.useRef<HTMLDivElement | null>(null);
-  
-  useEffect(() => {
-    if (editorRef.current) {
-      const editor = monaco.editor.create(editorRef.current, {
-        value: props.value,
-        language: props.language,
-        theme: "vs-dark",
-      });
-
-      props.onChange(editor.getValue());
-
-      editor.onDidChangeModelContent((event => {
-        props.onChange(editor.getValue());
-      }));
-
-      return () => {
-        editor.dispose();
-      };
-    }
-  }, [props.value, props.language]);
-
+export default function CodeEditor({ className, language, value, onChange }: Props) {
   return (
-      <div>
-          <ToolBar />
-          <div ref={editorRef} style={{height: "calc(100vh - 200px)"}}></div>
-      </div>
-  )
+    <Editor
+      language={language as string}
+      defaultLanguage="python"
+      defaultValue={value}
+      theme="vs-dark"
+      options={{
+        selectOnLineNumbers: true
+      }}
+      onChange={onChange}
+      className={clsx('h-full w-full', className)}
+    />
+  );
 }
-
-export default CodeEditor;
