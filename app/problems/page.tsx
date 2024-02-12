@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import { editor } from 'monaco-editor';
 
 // Disable ssr as instructed by package documentation @monaco-editor/react
-export const DyanmicCodeEditor = dynamic(() => import('../../components/CodeEditor'), {
+const DyanmicCodeEditor = dynamic(() => import('../../components/CodeEditor'), {
   ssr: false
 });
 
