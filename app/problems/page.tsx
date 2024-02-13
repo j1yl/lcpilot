@@ -37,7 +37,7 @@ export default function Page() {
             ))}
           </select> */}
         </div>
-        <DyanmicCodeEditor onChange={handleEditorContentChange} />
+        <DyanmicCodeEditor onChange={handleEditorContentChange} className="rounded"/>
       </div>
     </>
   );
