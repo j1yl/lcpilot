@@ -1,9 +1,0 @@
-.footerBig {
-    background-color: #000000;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
-    font-size: 12px;
-    z-index: 20;
-  }
