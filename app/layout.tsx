@@ -28,7 +28,7 @@ export default function RootLayout({
           className="absolute left-0 top-0 z-0 aspect-video w-full object-center opacity-20"
         />
         <Navbar />
-        <div className="z-20 mx-auto flex h-full w-full max-w-screen-2xl flex-grow">{children}</div>
+        <div className="z-20 mx-auto flex h-full w-full flex-grow">{children}</div>
       </body>
     </html>
   );

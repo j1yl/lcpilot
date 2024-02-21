@@ -5,22 +5,22 @@ import clsx from 'clsx';
 import { Button, buttonVariants } from './Button';
 
 enum SupportedLanguages {
-  cpp = "C++",
-  c = "C",
-  csharp = "C#",
-  dart = "Dart",
-  go = "Go",
-  java = "Java",
-  javascript = "JavaScript",
-  kotlin = "Kotlin",
-  lua = "Lua",
-  perl = "Perl",
-  php = "PHP",
-  python = "Python3",
-  ruby = "Ruby",
-  rust = "Rust",
-  swift = "Swift",
-  typescript = "TypeScript"
+  cpp = 'C++',
+  c = 'C',
+  csharp = 'C#',
+  dart = 'Dart',
+  go = 'Go',
+  java = 'Java',
+  javascript = 'JavaScript',
+  kotlin = 'Kotlin',
+  lua = 'Lua',
+  perl = 'Perl',
+  php = 'PHP',
+  python = 'Python3',
+  ruby = 'Ruby',
+  rust = 'Rust',
+  swift = 'Swift',
+  typescript = 'TypeScript'
 }
 
 type Props = {
@@ -36,25 +36,28 @@ export default function CodeEditor({ className, language, value, onChange }: Pro
   );
 
   return (
-    <div>
-      <select
-      id="language_selector"
-        className="focus:outline-none bg-neutral-800 text-xs hover:bg-neutral-700 px-2 py-1 rounded hover:cursor-pointer"
-        onChange={() => {
-          const select = document.querySelector('#language_selector') as HTMLSelectElement;
-          const selectedLanguage = select.options[select.selectedIndex].value as SupportedLanguages;
-          setCurrentLanguage(selectedLanguage);
-        }}
-        defaultValue={language}
-        name={language as string}
-      >
-        value={currentLanguage || SupportedLanguages.cpp}
-        {Object.keys(SupportedLanguages).map((lang) => (
-          <option key={lang} value={lang}>
-            {SupportedLanguages[lang as keyof typeof SupportedLanguages]}
-          </option>
-        ))}
-      </select>
+    <>
+      <div className="w-full border-b border-neutral-700 bg-neutral-800 p-1">
+        <select
+          id="language_selector"
+          className="bg-transparent px-2 py-1 text-xs hover:cursor-pointer focus:outline-none"
+          onChange={() => {
+            const select = document.querySelector('#language_selector') as HTMLSelectElement;
+            const selectedLanguage = select.options[select.selectedIndex]
+              .value as SupportedLanguages;
+            setCurrentLanguage(selectedLanguage);
+          }}
+          defaultValue={language}
+          name={language as string}
+        >
+          value={currentLanguage || SupportedLanguages.cpp}
+          {Object.keys(SupportedLanguages).map((lang) => (
+            <option key={lang} value={lang}>
+              {SupportedLanguages[lang as keyof typeof SupportedLanguages]}
+            </option>
+          ))}
+        </select>
+      </div>
       <Editor
         defaultLanguage={currentLanguage || SupportedLanguages.cpp}
         language={currentLanguage}
@@ -65,8 +68,8 @@ export default function CodeEditor({ className, language, value, onChange }: Pro
           tabCompletion: 'on'
         }}
         onChange={onChange}
-        className={clsx('h-full w-full', className)}
+        className={className}
       />
-    </div>
+    </>
   );
 }

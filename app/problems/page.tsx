@@ -25,19 +25,13 @@ export default function Page() {
           <div>2</div>
         </div>
       </div>
-      <div id="editor-parent" className="flex w-full flex-col">
-        <div className="flex w-full items-center justify-between border-b border-b-neutral-500">
-          {/* Can show selector for lang and reset button here */}
-          {/* I will let u figure it out */}
-          {/* <select className="bg-transparent focus:outline-none">
-            {['typescript', 'python', 'cpp'].map((lang) => (
-              <option key={lang} value={lang}>
-                {lang[0].toUpperCase() + lang.slice(1)}
-              </option>
-            ))}
-          </select> */}
-        </div>
-        <DyanmicCodeEditor value={""} onChange={handleEditorContentChange} language={"cpp"} className="rounded"/>
+      <div id="editor-parent" className="flex max-h-[calc(100vh-40px)] w-full flex-col">
+        <DyanmicCodeEditor
+          value={''}
+          onChange={handleEditorContentChange}
+          language={'cpp'}
+          className="max-h-screen rounded"
+        />
       </div>
     </>
   );
