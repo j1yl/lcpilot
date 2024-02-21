@@ -5,7 +5,6 @@ import clsx from 'clsx';
 import { Button, buttonVariants } from './Button';
 
 enum SupportedLanguages {
-  //add C
   cpp = "C++",
   c = "C",
   csharp = "C#",
@@ -52,7 +51,7 @@ export default function CodeEditor({ className, language, value, onChange }: Pro
         value={currentLanguage || SupportedLanguages.cpp}
         {Object.keys(SupportedLanguages).map((lang) => (
           <option key={lang} value={lang}>
-            {SupportedLanguages[lang]}
+            {SupportedLanguages[lang as keyof typeof SupportedLanguages]}
           </option>
         ))}
       </select>
