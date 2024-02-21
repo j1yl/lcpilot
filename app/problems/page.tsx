@@ -37,7 +37,7 @@ export default function Page() {
             ))}
           </select> */}
         </div>
-        <DyanmicCodeEditor onChange={handleEditorContentChange} className="rounded"/>
+        <DyanmicCodeEditor value={""} onChange={handleEditorContentChange} language={"cpp"} className="rounded"/>
       </div>
     </>
   );
