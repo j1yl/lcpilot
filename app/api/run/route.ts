@@ -5,7 +5,14 @@ export async function POST(req: NextRequest) {
 
   const { language, version, code } = await req.json();
 
-  console.log(language, code);
+  if (!language || !version || !code) {
+    return NextResponse.json(
+      { error: 'Missing language, version or code' },
+      {
+        status: 400
+      }
+    );
+  }
 
   try {
     const response = await fetch(ENDPOINT, {
@@ -23,7 +30,7 @@ export async function POST(req: NextRequest) {
           }
         ],
         compile_timeout: 10000,
-        run_timeout: 3000,
+        run_timeout: 5000,
         compile_memory_limit: -1,
         run_memory_limit: -1
       })
