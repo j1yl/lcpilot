@@ -1,5 +1,5 @@
-import React, {useRef} from 'react';
-import Editor, { type Monaco } from '@monaco-editor/react';
+import React from 'react';
+import Editor, { Monaco } from '@monaco-editor/react';
 import { type editor } from 'monaco-editor';
 import clsx from 'clsx';
 import { Button, buttonVariants } from './Button';
@@ -35,20 +35,6 @@ export default function CodeEditor({ className, language, value, onChange }: Pro
     language || SupportedLanguages.cpp
   );
 
-  const editorRef = React.useRef<any>(null);
-
-  const handleEditorDidMount = (editor: Monaco) => {
-    editorRef.current = editor;
-    editorRef.current.setValue("");
-    };
-};
-
-  const handleResetText = () => {
-    if (editorRef.current) {
-        editorRef.current.resetText();
-    }
-  };
-  
 
   return (
     <>
@@ -87,8 +73,7 @@ export default function CodeEditor({ className, language, value, onChange }: Pro
           selectOnLineNumbers: true,
           tabCompletion: 'on'
         }}
-        ref={editorRef}
-         
+        
         onChange={onChange}
         className={className}
       />
