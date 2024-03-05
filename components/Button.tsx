@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 
 const buttonVariants = cva(
-  'flex w-max px-4 py-2 rounded items-center gap-2 transition-colors duration-200',
+  'flex w-max px-2 py-1 rounded items-center gap-2 transition-colors duration-200',
   {
     variants: {
       variant: {
