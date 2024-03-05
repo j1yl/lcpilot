@@ -23,9 +23,6 @@ const Navbar = (props: Props) => {
           </Link>
           <ul className="flex items-center gap-4">
             <li>
-              <Link href="/problems">Problems</Link>
-            </li>
-            <li>
               <Link href="/faq">FAQ</Link>
             </li>
             <li>
