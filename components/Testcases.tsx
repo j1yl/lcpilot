@@ -22,6 +22,7 @@ export default function Testcases({ testcases }: Props) {
       <div className="flex flex-wrap items-center gap-2">
         {result.map((_, i) => (
           <Button
+            key={i}
             onClick={() => setSelected(i)}
             className={buttonVariants({
               variant: 'ghost',
