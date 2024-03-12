@@ -27,7 +27,8 @@ export default async function Home() {
             <tr key={doc.id}>
               <td>
                 <Link href={`/problems/${doc.id}`}>
-                  {doc.title[0].toUpperCase() + doc.title.slice(1).toLowerCase()}
+                  {/* {doc.title[0].toUpperCase() + doc.title.slice(1).toLowerCase()} */}
+                  {doc.title}
                 </Link>
               </td>
               <td
