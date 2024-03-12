@@ -2,7 +2,6 @@ import { Problem } from '@/types/problem';
 import getDocument from '@/lib/firebase/getData';
 import dynamic from 'next/dynamic';
 import Testcases from '@/components/Testcases';
-import Markdown from 'react-markdown';
 import MdxLayout from '@/components/MdxLayout';
 
 const DyanmicCodeEditor = dynamic(() => import('@/components/CodeEditor'), {
@@ -27,7 +26,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   return (
     <div className="m-2 grid max-h-[calc(100vh-40px-16px)] w-full gap-2 md:grid-cols-2">
       <div className="flex flex-col gap-4 overflow-scroll rounded-lg bg-neutral-900 p-4 text-white md:row-span-2">
-        <h1 className="text-3xl font-bold">
+        <h1 className="text-2xl font-semibold">
           {/* {result.lc_number}: {result.title[0].toUpperCase() + result.title.slice(1).toLowerCase()}
            */}
           {result.lc_number}: {result.title}
