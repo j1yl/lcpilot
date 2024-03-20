@@ -2,8 +2,8 @@ import { NextResponse, type NextRequest } from 'next/server';
 import fetch from 'node-fetch'; // Import fetch for making HTTP requests
 
 export async function POST(req: NextRequest) {
-  const GEMINI_ENDPOINT = 'YOUR_GEMINI_API_ENDPOINT'; // Replace this with your Gemini API endpoint
-  const GEMINI_API_KEY = 'AIzaSyDRvxivcXYTYmx2aU_d-XyP18Kt0T22acI'; // Replace this with your Gemini API key
+  const GEMINI_ENDPOINT = 'GEMINI_API_ENDPOINT'; // Replace this with your Gemini API endpoint
+  const GEMINI_API_KEY = 'GEMINI_API_KEY'; // Replace this with your Gemini API key
 
   // Extract language, version, and code from the request body
   const { language, version, code } = await req.json();
