@@ -2,6 +2,7 @@ import { Problem } from '@/types/problem';
 import getDocument from '@/lib/firebase/getData';
 import dynamic from 'next/dynamic';
 import Testcases from '@/components/Testcases';
+import MdxLayout from '@/components/MdxLayout';
 
 const DyanmicCodeEditor = dynamic(() => import('@/components/CodeEditor'), {
   ssr: false
@@ -35,7 +36,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         >
           {result.difficulty[0].toUpperCase() + result.difficulty.slice(1).toLowerCase()}
         </div>
-        <div className="prose">{result.content}</div>
+        <MdxLayout>{`${result.content.replaceAll('\\n', '\n')}`}</MdxLayout>
       </div>
       <div className="min-h-0 min-w-0 flex-1 rounded-lg md:row-span-2">
         <DyanmicCodeEditor
