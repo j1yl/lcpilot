@@ -53,6 +53,7 @@ export default function CodeEditor({ className, language, onChange }: Props) {
         <Button
           className="border border-transparent hover:cursor-pointer hover:bg-neutral-700"
           type="button"
+          title="Reset to default code"
           onClick={() => setCodeValue(starterCodes[currentLanguage])}
         >
           <svg
