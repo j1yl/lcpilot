@@ -24,12 +24,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <div className="m-2 grid max-h-[calc(100vh-40px-16px)] w-full gap-2 md:grid-cols-2">
-      <div className="flex flex-col gap-4 overflow-scroll rounded-lg bg-neutral-900 p-4 text-white md:row-span-2">
-        <h1 className="text-2xl font-semibold">
-          {/* {result.lc_number}: {result.title[0].toUpperCase() + result.title.slice(1).toLowerCase()}
-           */}
-          {result.lc_number}: {result.title}
+    <div className="m-2 grid w-full gap-2 md:grid-cols-2">
+      <div className="flex flex-col gap-4 rounded-lg bg-neutral-900 p-4">
+        <h1 className="text-3xl font-bold">
+          {result.lc_number}: {result.title[0].toUpperCase() + result.title.slice(1).toLowerCase()}
         </h1>
         <div
           className={`w-max rounded-xl bg-neutral-700 px-2 py-1 text-xs
@@ -38,14 +36,16 @@ export default async function Page({ params }: { params: { slug: string } }) {
         >
           {result.difficulty[0].toUpperCase() + result.difficulty.slice(1).toLowerCase()}
         </div>
-        {/* <MdxLayout>{`${result.content.replaceAll('\\n', '\n')}`}</MdxLayout> */}
-        {/* <Markdown>{`${result.content}`}</Markdown> */}
         <MdxLayout>{`${result.content.replaceAll('\\n', '\n')}`}</MdxLayout>
       </div>
-      <div className="min-h-0 min-w-0 flex-1 rounded-lg md:row-span-3">
-        <DyanmicCodeEditor />
+      <div className="min-h-0 min-w-0 flex-1 rounded-lg md:row-span-2">
+        <DyanmicCodeEditor
+          functionName={result.function}
+          params={result.params}
+          testcases={JSON.parse(result.testcases)}
+        />
       </div>
-      <div className="h-full rounded-lg bg-neutral-900">
+      <div className="rounded-lg bg-neutral-900">
         <Testcases testcases={result.testcases} />
       </div>
     </div>

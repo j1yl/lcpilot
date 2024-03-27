@@ -5,5 +5,7 @@ export type Problem = {
   title: string;
   topic: string;
   lc_number: number;
+  function: string;
   testcases: string;
+  params: string;
 };
