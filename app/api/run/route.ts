@@ -1,22 +1,17 @@
-import { NextResponse, type NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
   const ENDPOINT = 'https://emkc.org/api/v2/piston/execute';
 
   const { language, code, problem_name, testcases } = await req.json();
 
-  console.log(req);
-
   if (!language || !code || !problem_name || !testcases) {
-    return NextResponse.json(
-      { error: 'Missing language, version or code' },
-      { status: 400 }
-    );
+    return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
   }
 
-  const [langVersion, fullCode] = runnableCode(problem_name, language, code);
-
   try {
+    const [version, template] = generateRunnableCode(problem_name, language, code, testcases);
+
     const response = await fetch(ENDPOINT, {
       method: 'POST',
       headers: {
@@ -24,24 +19,15 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify({
         language: language,
-        version: langVersion,
+        version: version,
         files: [
           {
             name: 'src',
-            content: `${fullCode}`
+            content: template
           }
         ],
-        stdin: "",
-        // args: testcases.map((testcase: {
-        //   in: string;
-        //   out: string;
-        // }[]) => testcase.in),
-        args: testcases.map((t: {
-          in: string;
-          out: string;
-        }) => (
-          t.in
-        )),
+        stdin: '',
+        args: [],
         compile_timeout: 10000,
         run_timeout: 5000,
         compile_memory_limit: -1,
@@ -51,51 +37,40 @@ export async function POST(req: NextRequest) {
 
     const data = await response.json();
 
-    return NextResponse.json(
-      { ...data },
-      {
-        status: 200
-      }
-    );
+    return NextResponse.json(data, { status: 200 });
   } catch (error) {
-    return NextResponse.json(
-      { error },
-      {
-        status: 500
-      }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
-const runnableCode = (title: string, language: string, theirCode: string) => {
-
-  let newCode:string = "";
-  let version:string = "";
+function generateRunnableCode(
+  problem_name: string,
+  language: string,
+  code: string,
+  testcases: string
+) {
+  let version = '';
+  let template = '';
 
   switch (language) {
-    case 'cpp':
-      version = "10.2.0";
-      newCode = theirCode + `
-
-      int main() {
-      \t` + title + `(process.argv);
-      \treturn 0;
-      }`;
-      break;
     case 'python':
-      version = "3.10.0";
-      newCode = theirCode + "\n\n" + title + `(process.argv)`;
-      break;
-    case 'java':
-      version = "15.0.2"; 
-      newCode = theirCode + "\n\npublic static void main(String[] args) {\t" + title + "(process.argv);\n}";
-      break;
-    case 'typescript':
-      version = "5.0.3";
-      newCode = theirCode + "\n\n" + title + `(process.argv)`;
+      version = '3.10.0';
+      template = [
+        code,
+        'def run_test_cases():',
+        '  testcases = ' + JSON.stringify(testcases),
+        '  for testcase in testcases:',
+        "    input = testcase['in']",
+        "    expected = testcase['out']",
+        '    result = ' + problem_name + '(*input)',
+        '    print(f"Input: {input}, Expected: {expected}, Got: {result}")',
+        "if __name__ == '__main__':",
+        '  run_test_cases()'
+      ].join('\n');
       break;
     default:
-      newCode = theirCode;
+      throw new Error('Unsupported language');
   }
-  return [version, newCode];
+
+  return [version, template];
 }

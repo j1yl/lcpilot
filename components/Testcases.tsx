@@ -10,9 +10,10 @@ type Props = {
 export default function Testcases({ testcases }: Props) {
   const [selected, setSelected] = useState<number>(0);
 
+  // Adjusting the type to match the new structure
   const result: {
-    in: string;
-    out: string;
+    in: [[number], number]; // First element is an array of numbers, second is a number
+    out: number[]; // Directly an array of numbers
   }[] = JSON.parse(testcases);
 
   if (!testcases) return null;
@@ -37,12 +38,18 @@ export default function Testcases({ testcases }: Props) {
       {result[selected] && (
         <div className="flex flex-col gap-4 font-mono">
           <div className="flex flex-col gap-2">
-            <h3>stdin</h3>
-            <span className="rounded bg-neutral-700 p-2">{result[selected].in}</span>
+            <h3>Input</h3>
+            {/* Displaying the array and target value */}
+            <span className="rounded bg-neutral-700 p-2">
+              nums: {JSON.stringify(result[selected].in[0])}, target: {result[selected].in[1]}
+            </span>
           </div>
           <div className="flex flex-col gap-2">
-            <h3>stdout</h3>
-            <span className="rounded bg-neutral-700 p-2">{result[selected].out}</span>
+            <h3>Output</h3>
+            {/* Displaying the output array */}
+            <span className="rounded bg-neutral-700 p-2">
+              {JSON.stringify(result[selected].out)}
+            </span>
           </div>
         </div>
       )}
