@@ -19,7 +19,7 @@ export default function Testcases({ testcases }: Props) {
   if (!testcases) return null;
 
   return (
-    <div className="flex h-full flex-col gap-8 p-4">
+    <div className="flex h-full flex-col gap-8">
       <div className="flex flex-wrap items-center gap-2">
         {result.map((_, i) => (
           <Button
