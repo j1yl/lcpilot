@@ -1,8 +1,6 @@
 import React from 'react';
-import dynamic from 'next/dynamic';
+import Accordion from './Accordion'; 
 import styles from './App.module.css';
-
-const Accordion = dynamic(() => import('./Accordion'), { ssr: false });
 
 const App: React.FC = () => {
   return (
@@ -18,10 +16,10 @@ const App: React.FC = () => {
           <p>The AI will be able to follow along with what you&apos;re stuck at, just as long as you specify what language you&apos;re stuck at.</p>
         </Accordion>
         <Accordion title="Who built this project?">
-          <p>https://github.com/j1yl https://github.com/NateGries1 https://github.com/CLawDann</p>
+          <p><a href="https://github.com/j1yl">j1yl</a> <a href="https://github.com/NateGries1">NateGries1</a> <a href="https://github.com/CLawDann">CLawDann</a></p>
         </Accordion>
         <Accordion title="What did we build this project with?">
-          <p>https://nextjs.org/ https://tailwindcss.com/ https://microsoft.github.io/monaco-editor/ https://github.com/engineer-man/piston</p>
+          <p><a href="https://nextjs.org/">Next.js</a> <a href="https://tailwindcss.com/">Tailwind CSS</a> <a href="https://microsoft.github.io/monaco-editor/">Monaco Editor</a> <a href="https://github.com/engineer-man/piston">Piston</a></p>
         </Accordion>
         <Accordion title="Are there any known bugs for this project?">
           <p>None at the moment.</p>
