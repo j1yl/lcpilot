@@ -16,7 +16,7 @@ const App: React.FC = () => {
           <p>The AI will be able to follow along with what you&apos;re stuck at, just as long as you specify what language you&apos;re stuck at.</p>
         </Accordion>
         <Accordion title="Who built this project?">
-          <p><a href="https://github.com/j1yl">j1yl</a> <a href="https://github.com/NateGries1">NateGries1</a> <a href="https://github.com/CLawDann">CLawDann</a></p>
+          <p><a href="https://github.com/j1yl">Joe</a> <a href="https://github.com/NateGries1">Nate</a> <a href="https://github.com/CLawDann">Daniel</a></p>
         </Accordion>
         <Accordion title="What did we build this project with?">
           <p><a href="https://nextjs.org/">Next.js</a> <a href="https://tailwindcss.com/">Tailwind CSS</a> <a href="https://microsoft.github.io/monaco-editor/">Monaco Editor</a> <a href="https://github.com/engineer-man/piston">Piston</a></p>
