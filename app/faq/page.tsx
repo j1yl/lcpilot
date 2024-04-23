@@ -1,5 +1,5 @@
 import React from 'react';
-import Accordion from './Accordion'; 
+import Accordion from '../../components/Accordion'; 
 import styles from './App.module.css';
 
 const App: React.FC = () => {
