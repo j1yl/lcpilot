@@ -8,8 +8,9 @@
   .content {
     display: flex;
     flex-direction: column; 
-    gap: 20px; 
+    gap: 8px; 
     max-width: 600px; 
     padding: 20px; 
     text-align: center; 
   }
+

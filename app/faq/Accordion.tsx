@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import './Accordion.css';
 
 interface AccordionProps {
   title: string;
+  children: ReactNode; 
 }
 
 const Accordion: React.FC<AccordionProps> = ({ title, children }) => {

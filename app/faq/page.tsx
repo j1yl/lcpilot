@@ -9,13 +9,13 @@ const App: React.FC = () => {
     <div className={styles.container}>
       <div className={styles.content}>
         <Accordion title="What is LC-Pilot?">
-          <p>This is a clone of Leetcode, with a basic subset of their features alongside AI capabilities to showcase where the AI can help on whatever you're stuck at in terms of coding for example.</p>
+          <p>This is a clone of Leetcode, with a basic subset of their features alongside AI capabilities to showcase where the AI can help on whatever you&apos;re stuck at in terms of coding for example.</p>
         </Accordion>
         <Accordion title="What AI will LC-Pilot use?">
           <p>Google Gemini.</p>
         </Accordion>
         <Accordion title="Will the AI be able to understand any coding language?">
-          <p>The AI will be able to follow along with what you're stuck at, just as long as you specify what language you're stuck at.</p>
+          <p>The AI will be able to follow along with what you&apos;re stuck at, just as long as you specify what language you&apos;re stuck at.</p>
         </Accordion>
         <Accordion title="Who built this project?">
           <p>https://github.com/j1yl https://github.com/NateGries1 https://github.com/CLawDann</p>

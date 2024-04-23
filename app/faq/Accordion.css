@@ -31,7 +31,7 @@
   .accordion-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.s ease;
+    transition: max-height 0.2s ease;
   }
   
   .accordion-checkbox:checked + .accordion-header + .accordion-content {
