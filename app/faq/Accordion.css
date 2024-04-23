@@ -1,0 +1,40 @@
+.accordion {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .accordion-checkbox {
+    display: none;
+  }
+  
+  .accordion-header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #000000;
+  }
+  
+  .accordion-title {
+    flex: 1;
+  }
+  
+  .accordion-icon {
+    font-size: 20px;
+  }
+  
+  .accordion-checkbox:checked + .accordion-header .accordion-icon {
+    transform: rotate(180deg);
+  }
+  
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.s ease;
+  }
+  
+  .accordion-checkbox:checked + .accordion-header + .accordion-content {
+    max-height: 1000px; 
+  }
+  

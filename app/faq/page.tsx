@@ -1,49 +1,34 @@
-import React from "react";
+import React from 'react';
+import dynamic from 'next/dynamic';
+import styles from './App.module.css';
 
-export default function FAQ() {
+const Accordion = dynamic(() => import('./Accordion'), { ssr: false });
+
+const App: React.FC = () => {
   return (
-    <div className="mx-auto mt-8 flex max-w-2xl flex-col gap-8 px-4 md:mt-16">
-      <h1>Frequently Asked Questions</h1>
-      <div className="flex flex-col gap-4">
-      <Question
-          question="What is LC-Pilot?"
-          answer="This is a clone of Leetcode, with a basic subset of their features alongside AI capabilities to showcase where the AI can help on whatever you're stuck at in terms of coding for example."
-        />
-        <Question
-          question="What AI will LC-Pilot use?" 
-          answer="ChatGPT."
-        />
-        <Question
-          question="Will the AI be able to understand any coding language?"
-          answer="The AI will be able to folllow along with what you're stuck at, just as long as you specify what language you're stuck at."
-        />
-        <Question
-          question="Who built this project?"
-          answer= "https://github.com/j1yl https://github.com/NateGries1 https://github.com/CLawDann"
-          />
-        <Question
-          question="What did we build this project with?"
-          answer = "https://nextjs.org/ https://tailwindcss.com/ https://microsoft.github.io/monaco-editor/ https://github.com/engineer-man/piston"
-          />
-        <Question
-          question = "Are there any known bugs for this project?"
-          answer= "None at the moment."
-          />
+    <div className={styles.container}>
+      <div className={styles.content}>
+        <Accordion title="What is LC-Pilot?">
+          <p>This is a clone of Leetcode, with a basic subset of their features alongside AI capabilities to showcase where the AI can help on whatever you're stuck at in terms of coding for example.</p>
+        </Accordion>
+        <Accordion title="What AI will LC-Pilot use?">
+          <p>Google Gemini.</p>
+        </Accordion>
+        <Accordion title="Will the AI be able to understand any coding language?">
+          <p>The AI will be able to follow along with what you're stuck at, just as long as you specify what language you're stuck at.</p>
+        </Accordion>
+        <Accordion title="Who built this project?">
+          <p>https://github.com/j1yl https://github.com/NateGries1 https://github.com/CLawDann</p>
+        </Accordion>
+        <Accordion title="What did we build this project with?">
+          <p>https://nextjs.org/ https://tailwindcss.com/ https://microsoft.github.io/monaco-editor/ https://github.com/engineer-man/piston</p>
+        </Accordion>
+        <Accordion title="Are there any known bugs for this project?">
+          <p>None at the moment.</p>
+        </Accordion>
       </div>
     </div>
   );
-}
+};
 
-interface QuestionProps {
-  question: string;
-  answer: string;
-}
-
-function Question({ question, answer }: QuestionProps) {
-  return (
-    <div className="flex flex-col gap-2">
-      <h2 className="text-lg font-medium">{question}</h2>
-      <p>{answer}</p>
-    </div>
-  );
-}
+export default App;
