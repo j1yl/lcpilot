@@ -1,40 +1,24 @@
 .accordion {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 10px;
-  }
-  
-  .accordion-checkbox {
-    display: none;
-  }
-  
-  .accordion-header {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    cursor: pointer;
-    background-color: #000000;
-  }
-  
-  .accordion-title {
-    flex: 1;
-  }
-  
-  .accordion-icon {
-    font-size: 20px;
-  }
-  
-  .accordion-checkbox:checked + .accordion-header .accordion-icon {
-    transform: rotate(180deg);
-  }
-  
-  .accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease;
-  }
-  
-  .accordion-checkbox:checked + .accordion-header + .accordion-content {
-    max-height: 1000px; 
-  }
-  
+  @apply border mb-2.5 rounded-[5px] border-solid border-[#ccc];
+}
+.accordion-checkbox {
+  @apply hidden;
+}
+.accordion-header {
+  @apply flex items-center cursor-pointer bg-black p-2.5;
+}
+.accordion-title {
+  @apply flex-1;
+}
+.accordion-icon {
+  @apply text-xl;
+}
+.accordion-checkbox:checked + .accordion-header .accordion-icon {
+  @apply rotate-180;
+}
+.accordion-content {
+  @apply max-h-0 overflow-hidden transition-[max-height] duration-[0.2s] ease-[ease];
+}
+.accordion-checkbox:checked + .accordion-header + .accordion-content {
+  @apply max-h-[1000px];
+}

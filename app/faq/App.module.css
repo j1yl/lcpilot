@@ -1,16 +1,6 @@
 .container {
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    height: 100vh; 
-  }
-  
-  .content {
-    display: flex;
-    flex-direction: column; 
-    gap: 8px; 
-    max-width: 600px; 
-    padding: 20px; 
-    text-align: center; 
-  }
-
+  @apply flex justify-center items-center h-screen;
+}
+.content {
+  @apply flex flex-col gap-2 max-w-[600px] text-center p-5;
+}
