@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
-//import SessionWrapper from '@/components/SessionWrapper';
+import SessionWrapper from '@/components/SessionWrapper';
 import Image from 'next/image';
 import Footer from '@/components/Footer';
 
@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    //<SessionWrapper>
+    <SessionWrapper>
       <html lang="en">
         <body
           className={`${inter.className} flex min-h-screen flex-col bg-neutral-950 text-xs text-white`}
@@ -35,6 +35,6 @@ export default function RootLayout({
           <Footer />
         </body>
       </html>
-    //</SessionWrapper>
+    </SessionWrapper>
   );
 }
