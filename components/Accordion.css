@@ -5,7 +5,7 @@
   @apply hidden;
 }
 .accordion-header {
-  @apply flex items-center cursor-pointer bg-black p-2.5;
+  @apply flex items-center justify-center cursor-pointer bg-black p-2.5;
 }
 .accordion-title {
   @apply flex-1;

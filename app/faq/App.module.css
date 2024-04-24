@@ -1,6 +1,6 @@
 .container {
-  @apply flex justify-center items-center h-screen;
+  @apply flex justify-center items-center h-screen w-full;
 }
 .content {
-  @apply flex flex-col gap-2 max-w-[600px] text-center p-5;
+  @apply flex flex-col gap-2 max-w-[600px] text-center p-5 mx-auto;
 }
