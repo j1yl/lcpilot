@@ -16,7 +16,7 @@ const DyanmicCodeEditor = dynamic(() => import('@/components/CodeEditor'), {
   ssr: false
 });
 
-export default function Problem({ result }: Props) {
+const Problem: React.FC<Props> = ({ result }) => {
   const [executionResult, setExecutionResult] = React.useState<ExecutionResult>({
     language: '',
     version: '',
@@ -54,7 +54,7 @@ export default function Problem({ result }: Props) {
           setTabIndex={setTabIndex}
         />
       </div>
-      <div className="flex h-[30vh] flex-col">
+      <div className="flex flex-col flex-grow">
         <div className="flex flex-wrap items-center bg-neutral-900">
           {Array.from({ length: 3 }).map((_, index) => (
             <Button
@@ -66,7 +66,7 @@ export default function Problem({ result }: Props) {
             </Button>
           ))}
         </div>
-        <div className="rounded-lg p-4">
+        <div className="overflow-auto rounded-lg p-4 max-h-80vh"> 
           {tabIndex === 0 ? (
             <Testcases testcases={result.testcases} />
           ) : tabIndex === 1 && executionResult.language ? (
@@ -87,7 +87,9 @@ export default function Problem({ result }: Props) {
       </div>
     </div>
   );
-}
+};
+
+export default Problem;
 
 const formatStdOut = (stdout: string) => {
   let theirPrint: string[] = [];

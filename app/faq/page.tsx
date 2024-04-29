@@ -22,7 +22,7 @@ const App: React.FC = () => {
           <p><a href="https://nextjs.org/">Next.js</a> <a href="https://tailwindcss.com/">Tailwind CSS</a> <a href="https://microsoft.github.io/monaco-editor/">Monaco Editor</a> <a href="https://github.com/engineer-man/piston">Piston</a></p>
         </Accordion>
         <Accordion title="Are there any known bugs for this project?">
-          <p>None at the moment.</p>
+          <p>Only few minor errors that won't disturb much from the project. That's all.</p>
         </Accordion>
       </div>
     </div>
