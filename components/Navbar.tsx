@@ -14,8 +14,8 @@ const Navbar = (props: Props) => {
   const { data: session } = useSession();
 
   return (
-    <nav className="sticky top-0 w-full bg-white/10 backdrop-blur-md">
-      <div className="mx-auto flex w-full items-center justify-between p-2 px-4">
+    <nav className="w-full bg-white/10 backdrop-blur-md">
+      <div className="mx-auto flex w-full items-center justify-between px-4 h-[40px]">
         <div className="flex items-center gap-4">
           <Link href="/" className="flex items-center gap-2">
             <MemoryIcon className="h-6 w-6 text-purple-400" />
