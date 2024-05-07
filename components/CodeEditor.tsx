@@ -1,3 +1,12 @@
+// things I did
+//
+//I changed loading for running code and added loading for hint button
+//copied onClick function for running code to hint code
+
+//Things to do
+//
+//still need to update payload to incude description (how do i get the description)
+//somehow get my data returned from route to display in Pilot tab
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -48,10 +57,39 @@ export default function CodeEditor({
     SupportedLanguages.python
   );
   const [codeValue, setCodeValue] = useState<string>(starterCodes[currentLanguage]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [runLoading, setRunLoading] = useState<boolean>(false);
+
+  const [hintLoading, setHintLoading] = useState<boolean>(false);
+
+  const getHint = async () => {
+    setHintLoading(true);
+    const payload = {
+      language: currentLanguage,
+      code: codeValue,
+      problem_name: functionName,
+    };
+
+    try {
+      const response = await fetch('/api/ai', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await response.json();
+
+      setExecutionResult(data);
+      setHintLoading(false);
+    } catch (error) {
+      setHintLoading(false);
+    }
+  };
+
 
   const runCode = async () => {
-    setLoading(true);
+    setRunLoading(true);
     const payload = {
       language: currentLanguage,
       code: codeValue,
@@ -71,9 +109,9 @@ export default function CodeEditor({
       const data = await response.json();
 
       setExecutionResult(data);
-      setLoading(false);
+      setRunLoading(false);
     } catch (error) {
-      setLoading(false);
+      setRunLoading(false);
     }
   };
 
@@ -134,20 +172,20 @@ export default function CodeEditor({
         className={'h-full'}
       />
       <Button
-        disabled={loading}
+        disabled={hintLoading}
         size={'sm'}
         className="transiiton-all absolute bottom-0 left-0 m-4 border border-transparent bg-green-800 px-2 py-1 duration-300 ease-in-out hover:cursor-pointer hover:bg-green-700 disabled:bg-neutral-800"
-        //onClick=
+        onClick={getHint}
       >
-        {loading ? <LoadingDots /> : 'Hint'}
+        {hintLoading ? <LoadingDots /> : 'Hint'}
       </Button>
       <Button
-        disabled={loading}
+        disabled={runLoading}
         size={'sm'}
         className="transiiton-all absolute bottom-0 right-0 m-4 border border-transparent bg-green-800 px-2 py-1 duration-300 ease-in-out hover:cursor-pointer hover:bg-green-700 disabled:bg-neutral-800"
         onClick={runCode}
       >
-        {loading ? <LoadingDots /> : 'Run'}
+        {runLoading ? <LoadingDots /> : 'Run'}
       </Button>
     </div>
   );
