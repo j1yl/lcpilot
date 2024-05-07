@@ -36,6 +36,7 @@ type Props = {
   testcases: TestCase[];
   onChange?: (value: string | undefined, event: editor.IModelContentChangedEvent) => void;
   setExecutionResult: React.Dispatch<React.SetStateAction<ExecutionResult>>;
+  setHintResult: React.Dispatch<React.SetStateAction<string>>;
   setTabIndex?: React.Dispatch<React.SetStateAction<number>>;
 };
 
@@ -44,7 +45,8 @@ export default function CodeEditor({
   params,
   functionName,
   onChange,
-  setExecutionResult
+  setExecutionResult,
+  setHintResult
 }: Props) {
   const starterCodes = {
     cpp: '#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "Hello, C++!" << endl;\n    return 0;\n}',
@@ -66,7 +68,7 @@ export default function CodeEditor({
     const payload = {
       language: currentLanguage,
       code: codeValue,
-      problem_name: functionName,
+      problem_name: functionName
     };
 
     try {
@@ -80,13 +82,12 @@ export default function CodeEditor({
 
       const data = await response.json();
 
-      setExecutionResult(data);
+      setHintResult(data.text);
       setHintLoading(false);
     } catch (error) {
       setHintLoading(false);
     }
   };
-
 
   const runCode = async () => {
     setRunLoading(true);

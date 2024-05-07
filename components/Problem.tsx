@@ -17,6 +17,7 @@ const DyanmicCodeEditor = dynamic(() => import('@/components/CodeEditor'), {
 });
 
 export default function Problem({ result }: Props) {
+  const [hintResult, setHintResult] = React.useState<string>("");
   const [executionResult, setExecutionResult] = React.useState<ExecutionResult>({
     language: '',
     version: '',
@@ -70,7 +71,7 @@ export default function Problem({ result }: Props) {
               </div>
             </div>
           ) : tabIndex === 2 ? (
-            <>ai</>
+            <div>{hintResult}</div>
           ) : (
             <div>No output yet</div>
           )}
@@ -83,6 +84,7 @@ export default function Problem({ result }: Props) {
           params={result.params}
           testcases={JSON.parse(result.testcases)}
           setExecutionResult={setExecutionResult}
+          setHintResult={setHintResult}
           setTabIndex={setTabIndex}
         />
       </div>
@@ -91,8 +93,6 @@ export default function Problem({ result }: Props) {
 }
 
 const formatStdOut = (stdout: string) => {
-  let theirPrint: string[] = [];
-  let ourPrint: string[] = [];
   let result = stdout;
   result
     .replace(/Input:/g, '\nInput:')
