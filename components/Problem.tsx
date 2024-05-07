@@ -1,6 +1,6 @@
 'use client';
 
-import { Problem } from '@/types/problem';
+import { Problem as ProblemType } from '@/types/problem';
 import React, { useEffect } from 'react';
 import MdxLayout from './MdxLayout';
 import Testcases from './Testcases';
@@ -9,7 +9,7 @@ import { ExecutionResult } from '@/types/executionResult';
 import { Button } from './Button';
 
 type Props = {
-  result: Problem;
+  result: ProblemType;
 };
 
 const DyanmicCodeEditor = dynamic(() => import('@/components/CodeEditor'), {
@@ -17,6 +17,7 @@ const DyanmicCodeEditor = dynamic(() => import('@/components/CodeEditor'), {
 });
 
 export default function Problem({ result }: Props) {
+  const [hintResult, setHintResult] = React.useState<string>("");
   const [executionResult, setExecutionResult] = React.useState<ExecutionResult>({
     language: '',
     version: '',
@@ -31,8 +32,8 @@ export default function Problem({ result }: Props) {
   const [tabIndex, setTabIndex] = React.useState<number>(0);
 
   return (
-    <div className="relative grid w-full md:grid-cols-2">
-      <div className="flex flex-col gap-4 rounded-lg bg-neutral-900 p-4">
+    <div className="relative grid h-[calc(100vh-80px)] w-full md:grid-cols-2 md:grid-rows-3">
+      <div className="row-span-2 overflow-y-scroll bg-neutral-900 p-4">
         <h1 className="text-3xl font-bold">
           {result.lc_number}: {result.title[0].toUpperCase() + result.title.slice(1).toLowerCase()}
         </h1>
@@ -45,17 +46,8 @@ export default function Problem({ result }: Props) {
         </div>
         <MdxLayout>{`${result.content.replaceAll('\\n', '\n')}`}</MdxLayout>
       </div>
-      <div className="min-h-0 min-w-0 flex-1 rounded-lg md:row-span-2">
-        <DyanmicCodeEditor
-          functionName={result.function}
-          params={result.params}
-          testcases={JSON.parse(result.testcases)}
-          setExecutionResult={setExecutionResult}
-          setTabIndex={setTabIndex}
-        />
-      </div>
-      <div className="flex h-[30vh] flex-col">
-        <div className="flex flex-wrap items-center bg-neutral-900">
+      <div className="row-span-1 bg-neutral-900 md:row-start-3">
+        <div className="flex items-center">
           {Array.from({ length: 3 }).map((_, index) => (
             <Button
               key={index}
@@ -66,7 +58,7 @@ export default function Problem({ result }: Props) {
             </Button>
           ))}
         </div>
-        <div className="rounded-lg p-4">
+        <div className="overflow-y-scroll p-4">
           {tabIndex === 0 ? (
             <Testcases testcases={result.testcases} />
           ) : tabIndex === 1 && executionResult.language ? (
@@ -79,19 +71,28 @@ export default function Problem({ result }: Props) {
               </div>
             </div>
           ) : tabIndex === 2 ? (
-            <>ai</>
+            <div>{hintResult}</div>
           ) : (
             <div>No output yet</div>
           )}
         </div>
+      </div>
+
+      <div className="md:row-span-3">
+        <DyanmicCodeEditor
+          functionName={result.function}
+          params={result.params}
+          testcases={JSON.parse(result.testcases)}
+          setExecutionResult={setExecutionResult}
+          setHintResult={setHintResult}
+          setTabIndex={setTabIndex}
+        />
       </div>
     </div>
   );
 }
 
 const formatStdOut = (stdout: string) => {
-  let theirPrint: string[] = [];
-  let ourPrint: string[] = [];
   let result = stdout;
   result
     .replace(/Input:/g, '\nInput:')
