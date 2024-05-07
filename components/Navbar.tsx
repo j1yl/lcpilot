@@ -15,7 +15,7 @@ const Navbar = (props: Props) => {
 
   return (
     <nav className="w-full bg-white/10 backdrop-blur-md">
-      <div className="mx-auto flex w-full items-center justify-between px-4 h-[40px]">
+      <div className="mx-auto flex h-[40px] w-full items-center justify-between px-4">
         <div className="flex items-center gap-4">
           <Link href="/" className="flex items-center gap-2">
             <MemoryIcon className="h-6 w-6 text-purple-400" />
@@ -23,10 +23,9 @@ const Navbar = (props: Props) => {
           </Link>
           <ul className="flex items-center gap-4">
             <li>
-              <Link href="/faq">FAQ</Link>
-            </li>
-            <li>
-              <Link href="/source">Source</Link>
+              <Link href="https://github.com/j1yl/lcpilot" target="_blank">
+                Source
+              </Link>
             </li>
           </ul>
         </div>
