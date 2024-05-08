@@ -1,12 +1,3 @@
-// things I did
-//
-//I changed loading for running code and added loading for hint button
-//copied onClick function for running code to hint code
-
-//Things to do
-//
-//still need to update payload to incude description (how do i get the description)
-//somehow get my data returned from route to display in Pilot tab
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -121,7 +112,7 @@ export default function CodeEditor({
   }, [currentLanguage]);
 
   return (
-    <div className="flex h-full flex-col relative">
+    <div className="relative flex h-full flex-col">
       <div className="flex w-full justify-between bg-neutral-900">
         <select
           id="language_selector"
@@ -175,7 +166,7 @@ export default function CodeEditor({
       <Button
         disabled={hintLoading}
         size={'sm'}
-        className="transiiton-all absolute bottom-0 left-0 m-4 border border-transparent bg-green-800 px-2 py-1 duration-300 ease-in-out hover:cursor-pointer hover:bg-green-700 disabled:bg-neutral-800"
+        className="absolute bottom-0 left-0 m-4 bg-gradient-to-r from-purple-500 to-pink-500 px-2 py-1 transition-all duration-300 ease-in-out hover:cursor-pointer hover:to-pink-400 disabled:bg-neutral-800"
         onClick={getHint}
       >
         {hintLoading ? <LoadingDots /> : 'Hint'}
@@ -183,7 +174,7 @@ export default function CodeEditor({
       <Button
         disabled={runLoading}
         size={'sm'}
-        className="transiiton-all absolute bottom-0 right-0 m-4 border border-transparent bg-green-800 px-2 py-1 duration-300 ease-in-out hover:cursor-pointer hover:bg-green-700 disabled:bg-neutral-800"
+        className="transiiton-all absolute bottom-0 right-0 m-4 bg-green-800 px-2 py-1 duration-300 ease-in-out hover:cursor-pointer hover:bg-green-700 disabled:bg-neutral-800"
         onClick={runCode}
       >
         {runLoading ? <LoadingDots /> : 'Run'}
