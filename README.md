@@ -12,13 +12,13 @@ LC Pilot is a semester long project done and submitted in CS 362 at [CSUF](https
 - AI hints with endpoint /api/ai
 
 ## The Way Forward
-- [] Mobile support?
-- [] Better markdown parsing
-- [] Testcase visualization (trees, linked lists, etc)
-- [] Save submissions per user
-- [] Improve code running structure
-- [] Secure api endpoints with token exchange
-- [] Add more language support
+- [ ] Mobile support?
+- [ ] Better markdown parsing
+- [ ] Testcase visualization (trees, linked lists, etc)
+- [ ] Save submissions per user
+- [ ] Improve code running structure
+- [ ] Secure api endpoints with token exchange
+- [ ] Add more language support
 
 ## Getting Started
 
