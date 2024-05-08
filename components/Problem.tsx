@@ -17,7 +17,7 @@ const DyanmicCodeEditor = dynamic(() => import('@/components/CodeEditor'), {
 });
 
 export default function Problem({ result }: Props) {
-  const [hintResult, setHintResult] = React.useState<string>("");
+  const [hintResult, setHintResult] = React.useState<string>('');
   const [executionResult, setExecutionResult] = React.useState<ExecutionResult>({
     language: '',
     version: '',
@@ -54,7 +54,7 @@ export default function Problem({ result }: Props) {
               className={`rounded-none px-4 py-2 hover:cursor-pointer hover:bg-neutral-700 ${tabIndex === index ? 'bg-neutral-700' : ''}`}
               onClick={() => setTabIndex(index)}
             >
-              {index === 0 ? 'Testcases' : index === 1 ? 'Output' : index === 2 ? 'Pilot' : ''}
+              {index === 0 ? 'Testcases' : index === 1 ? 'Output' : index === 2 ? 'Hints' : ''}
             </Button>
           ))}
         </div>
