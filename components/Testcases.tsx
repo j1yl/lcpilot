@@ -12,7 +12,7 @@ export default function Testcases({ testcases }: Props) {
 
   // Adjusting the type to match the new structure
   const result: {
-    in: [[number], number]; // First element is an array of numbers, second is a number
+    in: any[]; // First element is an array of numbers, second is a number
     out: number[]; // Directly an array of numbers
   }[] = JSON.parse(testcases);
 
@@ -41,7 +41,7 @@ export default function Testcases({ testcases }: Props) {
             <h3>Input</h3>
             {/* Displaying the array and target value */}
             <span className="rounded bg-neutral-700 p-2">
-              nums: {JSON.stringify(result[selected].in[0])}, target: {result[selected].in[1]}
+              {JSON.stringify(result[selected].in)}
             </span>
           </div>
           <div className="flex flex-col gap-2">
