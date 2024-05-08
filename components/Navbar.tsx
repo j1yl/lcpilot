@@ -27,6 +27,9 @@ const Navbar = (props: Props) => {
                 Source
               </Link>
             </li>
+            <li>
+            <Link href="/faq">FAQ</Link>
+          </li>
           </ul>
         </div>
         <div className="relative flex items-center">
