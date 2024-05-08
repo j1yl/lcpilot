@@ -22,6 +22,9 @@ export default async function Home() {
         <ul className="mx-auto my-auto flex w-full flex-col gap-2">
           {result
             .sort((a, b) => a.lc_number - b.lc_number)
+            .filter((a) => {
+              return a.id === 'SNGy8ITD0q2Cmc94bguX';
+            })
             .map((doc) => (
               <Link
                 href={`/problems/${doc.id}`}
