@@ -11,8 +11,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
     error: string;
   };
 
-  console.log(session?.user?.email);
-
   if (session?.user?.email) {
     return <ProblemLayout result={result} />;
   }
