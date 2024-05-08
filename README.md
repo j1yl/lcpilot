@@ -1,4 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# LC Pilot
+
+## About
+LC Pilot is a semester long project done and submitted in CS 362 at [CSUF](https://fullerton.edu). The goal was to clone leetcode's core functionality and adding on Gemini as our hints. Deployed at [lcpilot.joelee.info](https://lcpilot.joelee.info).
+
+## Features
+- In browser code editor w/ syntax highlighting
+- Firebase firestore
+- Dynamic problem rendering
+- Markdown parsing
+- Runnable code with endpoint /api/run
+- AI hints with endpoint /api/ai
+
+## The Way Forward
+- [] Mobile support?
+- [] Better markdown parsing
+- [] Testcase visualization (trees, linked lists, etc)
+- [] Save submissions per user
+- [] Improve code running structure
+- [] Secure api endpoints with token exchange
+- [] Add more language support
 
 ## Getting Started
 
