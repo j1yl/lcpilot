@@ -2,7 +2,7 @@ import getDocument from '@/lib/firebase/getData';
 import ProblemLayout from '@/components/Problem';
 import { Problem } from '@/types/problem';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/lib/auth';
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const session = await getServerSession(authOptions);
@@ -10,6 +10,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
     result: Problem;
     error: string;
   };
+
+  console.log(session?.user?.email);
 
   if (session?.user?.email) {
     return <ProblemLayout result={result} />;
